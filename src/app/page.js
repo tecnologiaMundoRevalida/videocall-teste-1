@@ -29,9 +29,9 @@ export default function Home() {
               //   urls: "stun:stun.l.google.com:19302"
               // },
               {
-                urls: "turn:openrelay.metered.ca:80",
-                username: "openrelayproject",
-                credential: "openrelayproject"
+                urls: "turn:44.196.233.187:3478",
+                username: "mundorevalida",
+                credential: "mundorevalida2023"
               }
             ]
           }
