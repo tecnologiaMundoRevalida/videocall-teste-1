@@ -46,6 +46,20 @@ export default function Home() {
             socketRef.current.emit('offer', {offer:peerConnection.localDescription,room:'20'});
           });
 
+          socketRef.current.on('offerReceived', (offer) => {
+            console.log('offer');
+            peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+              peerConnection.createAnswer()
+              .then((answer) => {
+                peerConnection.setLocalDescription(answer)
+                socketRef.current.emit('answer', {answer:answer,room:'20'});
+              });
+              // .then((answer) => {
+                
+              // });
+              // peerConnection.setLocalDescription(new RTCSessionDescription(peerConnection.localDescription));
+          });
+
         // Listen for 'answer' event
         socketRef.current.on('answerReceived', (answer) => {
           console.log(answer);
@@ -57,16 +71,19 @@ export default function Home() {
         //   peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
         // });
 
-        // Create answer and emit 'answer' event
-        peerConnection.onicecandidate = (event) => {
-          console.log(event);
-          if (event.candidate) {
-            socketRef.current.emit('iceCandidate', {candidate:event.candidate,room:'20'});
-          }
-        };
+        socketRef.current.on('iceCandidateReceived', (candidate) => {
+          peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+        });
 
+        // Create answer and emit 'answer' event
+          peerConnection.onicecandidate = (event) => {
+            if (event.candidate) {
+              console.log(event);
+              socketRef.current.emit('iceCandidate', {candidate:event.candidate,room:'20'});
+            }
+          };
+           
         peerConnection.ontrack = (event) => {
-          console.log(event.streams);
           remoteVideoRef.current.srcObject = event.streams[0];
         };
       })
