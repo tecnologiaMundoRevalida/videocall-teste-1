@@ -8,7 +8,7 @@ export default function Home() {
   const remoteVideoRef = useRef();
   const socketRef = useRef();
 
-  useEffect(() => {
+  // useEffect(() => {
     // Initialize socket connection
     socketRef.current = io('https://web-socket-mundorevalida.com:3000',{autoConnect: false,secure:false});
 
@@ -25,6 +25,9 @@ export default function Home() {
         const peerConnection = new RTCPeerConnection(
           {
             iceServers: [
+              {
+                urls: "stun:stun.l.google.com:19302"
+              },
               {
                 urls: "turn:44.196.233.187:3478",
                 username: "mundorevalida",
@@ -110,7 +113,7 @@ export default function Home() {
         };
       })
       .catch((error) => console.error('Error accessing camera:', error));
-  }, []);
+  // }, []);
 
   return (
     <div>
