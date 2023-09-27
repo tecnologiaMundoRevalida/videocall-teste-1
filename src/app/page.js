@@ -10,9 +10,9 @@ export default function Home() {
 
   useEffect(() => {
     // Initialize socket connection
-    socketRef.current = io('https://web-socket-mundorevalida.com:3000',{autoConnect: false,secure:false});
+    socketRef.current = io('http://localhost:3005',{autoConnect: false,secure:false});
 
-    socketRef.current.auth = {user_id: '123452'}
+    socketRef.current.auth = {user_id: "123452"}
     socketRef.current.connect();
 
     socketRef.current.emit('joinRoom', {training: '20', id: '1234528'});
@@ -29,7 +29,7 @@ export default function Home() {
                 urls: "stun:stun.l.google.com:19302"
               },
               {
-                urls: "turn:44.196.233.187:3478?transport=tcp",
+                urls: "turn:44.196.233.187:3478",
                 username: "mundorevalida",
                 credential: "mundorevalida2023"
               }
@@ -59,6 +59,13 @@ export default function Home() {
               // });
               // peerConnection.setLocalDescription(new RTCSessionDescription(peerConnection.localDescription));
           });
+
+          socketRef.current.emit('usersOnline');
+
+          socketRef.current.on('usersOnlineReceived', (users) => {
+            console.log(users);
+          });
+
 
         // Listen for 'answer' event
         socketRef.current.on('answerReceived', (answer) => {
