@@ -10,9 +10,9 @@ export default function Home() {
 
   useEffect(() => {
     // Initialize socket connection
-    socketRef.current = io('http://localhost:3005',{autoConnect: false,secure:false});
+    socketRef.current = io('https://web-socket-mundorevalida.com:3000',{autoConnect: false,secure:false});
 
-    socketRef.current.auth = {user_id: "123452"}
+    socketRef.current.auth = {user_id: '123452'}
     socketRef.current.connect();
 
     socketRef.current.emit('joinRoom', {training: '20', id: '1234528'});
