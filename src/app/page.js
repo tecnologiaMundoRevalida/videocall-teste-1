@@ -29,7 +29,7 @@ export default function Home() {
                 urls: "stun:stun.l.google.com:19302"
               },
               {
-                urls: "turn:44.196.233.187:3478",
+                urls: "turn:44.196.233.187:3478?transport=udp",
                 username: "mundorevalida",
                 credential: "mundorevalida2023"
               }
@@ -39,6 +39,24 @@ export default function Home() {
         stream.getTracks().forEach((track) => {
           peerConnection.addTrack(track, stream);
         });
+
+        setInterval(async () => {
+          const stats = await peerConnection.getStats();
+          
+          stats.forEach(report => {
+              if (report.type === "outbound-rtp" && report.mediaType === "video") {
+
+                    console.log(report.framesSent);
+          
+                    // Monitor framesSent for changes, if it stops updating, it may indicate a freeze.
+              }
+              if (report.type === "inbound-rtp" && report.mediaType === "video") {
+                    const framesReceived = report.framesReceived;
+                    console.log(framesReceived);
+                    // Monitor framesReceived for changes, if it stops updating, it may indicate a freeze.
+              }
+          });
+        }, 2000)
 
         peerConnection.createOffer()
           .then((offer) => peerConnection.setLocalDescription(offer))
