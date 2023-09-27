@@ -8,7 +8,7 @@ export default function Home() {
   const remoteVideoRef = useRef();
   const socketRef = useRef();
 
-  // useEffect(() => {
+  useEffect(() => {
     // Initialize socket connection
     socketRef.current = io('https://web-socket-mundorevalida.com:3000',{autoConnect: false,secure:false});
 
@@ -113,7 +113,7 @@ export default function Home() {
         };
       })
       .catch((error) => console.error('Error accessing camera:', error));
-  // }, []);
+  });
 
   return (
     <div>
