@@ -25,11 +25,11 @@ export default function Home() {
         const peerConnection = new RTCPeerConnection(
           {
             iceServers: [
+              // {
+              //   urls: "stun:stun.l.google.com:19302"
+              // },
               {
-                urls: "stun:stun.l.google.com:19302"
-              },
-              {
-                urls: "turn:44.196.233.187:3478",
+                urls: "turn:3.94.23.248",
                 username: "mundorevalida",
                 credential: "mundorevalida2023"
               }
@@ -113,7 +113,7 @@ export default function Home() {
         };
       })
       .catch((error) => console.error('Error accessing camera:', error));
-  });
+  }, []);
 
   return (
     <div>
