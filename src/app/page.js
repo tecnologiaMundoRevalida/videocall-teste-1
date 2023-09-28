@@ -25,9 +25,9 @@ export default function Home() {
         const peerConnection = new RTCPeerConnection(
           {
             iceServers: [
-              // {
-              //   urls: "stun:stun.l.google.com:19302"
-              // },
+              {
+                urls: "stun:stun.l.google.com:19302"
+              },
               {
                 urls: "turn:3.94.23.248?transport=tcp",
                 username: "mundorevalida",
