@@ -31,7 +31,7 @@ export default function Home() {
               {
                 urls: "turn:3.94.23.248?transport=tcp",
                 username: "mundorevalida",
-                credential: "mundorevalida2023"
+                credential: "mundorevalida"
               }
             ]
           }
