@@ -29,7 +29,7 @@ export default function Home() {
                 urls: "stun:stun.l.google.com:19302"
               },
               {
-                urls: "turn:3.94.23.248",
+                urls: "turn:3.94.23.248?transport=tcp",
                 username: "mundorevalida",
                 credential: "mundorevalida2023"
               }
