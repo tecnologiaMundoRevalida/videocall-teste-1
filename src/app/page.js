@@ -26,27 +26,12 @@ export default function Home() {
           {
             iceServers: [
               {
-                urls: "stun:stun.relay.metered.ca:80",
+                urls: "stun:stun.l.google.com:19302",
               },
               {
-                urls: "turn:a.relay.metered.ca:80",
-                username: "aff70a1b4dbd5746606b1965",
-                credential: "xGnMVot2uJTGVABI",
-              },
-              {
-                urls: "turn:a.relay.metered.ca:80?transport=tcp",
-                username: "aff70a1b4dbd5746606b1965",
-                credential: "xGnMVot2uJTGVABI",
-              },
-              {
-                urls: "turn:a.relay.metered.ca:443",
-                username: "aff70a1b4dbd5746606b1965",
-                credential: "xGnMVot2uJTGVABI",
-              },
-              {
-                urls: "turn:a.relay.metered.ca:443?transport=tcp",
-                username: "aff70a1b4dbd5746606b1965",
-                credential: "xGnMVot2uJTGVABI",
+                    urls: "turn:44.196.233.187:3478?transport=tcp",
+                    username: "mundorevalida",
+                    credential: "mundorevalida2023",
               },
             ]
           }
